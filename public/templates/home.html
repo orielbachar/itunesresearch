@@ -1,0 +1,22 @@
+<div class="row">
+<div class="col-md-12">
+    <button class="btn btn-success" ng-repeat="(game, category) in gameCategories" ng-click="getByCategory(category)">{{game}}</button>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+
+  <p style="color: blue" id="list" ng-repeat="games in sports" ng-click="gameList(games)">
+
+    <img ng-src="{{games.icon}}" /> {{games.title}} </p>
+
+  </div>
+
+  <div class="col-md-5">
+    <h3 id = "title" class="text-center">{{gameSelected.title}}</h3>
+    <p>
+      {{gameSelected.description}}
+    </p>
+  </div>
+</div>

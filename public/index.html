@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/../bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="../angular/angular.min.js"></script>
+    <script src="../angular-ui-router/release/angular-ui-router.js"></script>
+
+    <meta charset="utf-8">
+    <title>Mobile Games Saga </title>
+  </head>
+  <body ng-app="itunesChartApp">
+
+    <div>
+
+
+      <nav class="navbar custom-nav navbar-default navbar-static-top">
+        <h1 class="text-center">Mobile Games Saga</h1>
+      </nav>
+
+
+    </div>
+  <div class="container">
+
+    <div class="row">
+
+
+        <ui-view></ui-view>
+
+
+    </div>
+  </div>
+
+
+    <!-- <iframe ng-src="https://widgets.itunes.apple.com/widget.html?c=us&brc=FFFFFF&blc=FFFFFF&trc=FFFFFF&tlc=FFFFFF&d=&t=&m=software&e=software,iPadSoftware&w=250&h=300&ids=553834731&wt=discovery&partnerId=&affiliate_id=&at=&ct=" frameborder=0 style="overflow-x:hidden;overflow-y:hidden;width:250px;height: 300px;border:0px"></iframe> -->
+<!--https://colorlib.com/wp/themes/pinbin/-->
+
+    <!--      Modules     -->
+    <script src="js/itunesChartApp.js"></script>
+    <!--      Services     -->
+    <script src="js/tunesFactory.js"></script>
+    <!--      Controllers     -->
+    <script src="js/tunesCtrl.js"></script>
+
+  </body>
+</html>
