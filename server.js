@@ -2,7 +2,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var store = require('app-store-scraper');
-var mongoose = require('mongoose');
 var request = require('request');
 
 //modules
@@ -11,7 +10,6 @@ var cleanList = require('./modules/cleanList');
 
 //start express and mongoose
 var app = express();
-mongoose.connect('mongodb://localhost/itunes');
 
 //useful tools
 app.use(bodyParser.json());
@@ -21,8 +19,8 @@ app.use(express.static('public'));
 app.use(express.static('node_modules'));
 
 // Get Methods
-app.get('/games/:category', function(req, res){
-  request('https://itunes.apple.com/us/rss/topfreeapplications/limit=15/genre='+ req.params.category +'/json', function (error, response, body) {
+app.get('/games/:category/:state', function(req, res){
+  request('https://itunes.apple.com/us/rss/'+ req.params.state + '/limit=15/genre='+ req.params.category +'/json', function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var info = JSON.parse(body);
       var dataApi = cleanList(info);

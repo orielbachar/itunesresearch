@@ -2,10 +2,27 @@
   cursor: pointer;
 }
 
-.btn-success{
+.btn{
 
   margin-left: 5px;
   margin-top: 5px;
   margin-bottom: 10px;
+
+}
+#selectedGame{
+  /*position: fixed;
+ width: 600px;
+ height: 200px;
+ left: 50%;
+ top: 0%;
+ margin-left: -150px; /*half the width*/
+ /*padding-top: 100px;*/*/
+ }
+
+#selectedGameIcon{
+  margin: 0 auto;
+}
+
+.categorySelected{
 
 }

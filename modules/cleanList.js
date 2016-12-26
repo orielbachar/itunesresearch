@@ -15,7 +15,7 @@ function cleanList (results) {
       price: price,
       currency: app['im:price'].attributes.currency,
       free: price === 0,
-      description: app.summary.label,
+      description: app.summary ? app.summary.label : "",
       developer: app['im:artist'].label,
       developerUrl: developerUrl,
       developerId: developerId,

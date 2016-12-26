@@ -1,6 +1,6 @@
 app.factory('tunesFactory', function($http){
 
-var sports = {};
+var treasure = {};
 var gameCategories = {
      ACTION: 7001,
      ADVENTURE: 7002,
@@ -22,16 +22,39 @@ var gameCategories = {
      WORD: 7019
 };
 
-function getAll (categoryNumber){
-  return $http.get('/games/' + categoryNumber).then(function(data){
-    sports.games = data;
+function sum(a,b){
+  return a+b;
+}
+var x = sum(1,2);
+
+var gameStates = {
+    NEW_IOS: 'newapplications',
+    "isFreetrueNewtrue": 'newfreeapplications',
+    "isFreefalseNewtrue": 'newpaidapplications',
+    "isFreetrueNewfalse": 'topfreeapplications',
+    TOP_FREE_IPAD: 'topfreeipadapplications',
+    TOP_GROSSING_IOS: 'topgrossingapplications',
+    TOP_GROSSING_IPAD: 'topgrossingipadapplications',
+    "isFreefalseNewfalse": 'toppaidapplications',
+    TOP_PAID_IPAD: 'toppaidipadapplications'
+};
+
+function getAll (categoryNumber, gameStates){
+  return $http.get('/games/' + categoryNumber + '/' + gameStates).then(function(data){
+    treasure.games = data;
   });
+}
+
+function setFilter (categoryNumber, costState, rankState){
+  return getAll(categoryNumber, gameStates["isFree" + costState.toString() + "New" + rankState.toString()]);
 };
 
   return{
     getAll: getAll,
-    sports: sports,
-    gameCategories: gameCategories
+    treasure: treasure,
+    gameCategories: gameCategories,
+    setFilter: setFilter,
+    gameStates: gameStates
   }
 
 });
