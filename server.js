@@ -137,5 +137,5 @@ app.listen(8000);
 // .then(console.log)
 // .catch(console.log)
 
-//https://itunes.apple.com/us/rss/newapplications/limit=200/genre=7001/json
+//https://itunes.apple.com/us/rss/topgrossingapplications/limit=200/genre=7001/json
 //https://rss.itunes.apple.com/?at=
