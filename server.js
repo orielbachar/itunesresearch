@@ -31,7 +31,7 @@ app.get('/games/:category/:state', function(req, res){
 
 //Functions
 
-app.listen(8000);
+app.listen(3000);
 
 
 // store.list({
