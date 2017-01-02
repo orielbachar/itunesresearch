@@ -31,8 +31,9 @@ app.get('/games/:category/:state', function(req, res){
 
 //Functions
 
-app.listen(3000);
-
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 // store.list({
 //   collection: store.collection.NEW_FREE_IOS,
