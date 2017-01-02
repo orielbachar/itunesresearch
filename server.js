@@ -1,7 +1,6 @@
 //npm's
 var express = require('express');
 var bodyParser = require('body-parser');
-var store = require('app-store-scraper');
 var request = require('request');
 
 //modules
