@@ -1,39 +1,85 @@
 <!-- Game categories buttons -->
-<div class="row">
-<div class="btn-group btn-toggle">
-  <button ng-class="isFree ? 'btn-default' : 'btn-primary active'" ng-click="setIsFree(false)">Paid</button>
-  <button ng-class="!isFree ? 'btn-default' : 'btn-primary active'" ng-click="setIsFree(true)">Free</button>
-</div>
-</div>
 
-<div class="row">
- <div class="btn-group btn-toggle">
-   <button ng-class="!isNew ? 'btn-default' : 'btn-primary active'" ng-click="setIsNew(true)">New <!--{{isFree}}--></button>
-   <button ng-class="isNew ? 'btn-default' : 'btn-primary active'" ng-click="setIsNew(false)">Top  </button>
- </div>
- </div>
 
-<div class="row">
-  <div class="col-md-12">
-      <button ng-repeat="(categoryName, categoryNumber) in gameCategories" ng-class="{'btn' : true, 'btn-primary' : categoryNumber === categorySelected}"  ng-click="setCategory(categoryNumber)">{{categoryName}}</button>
+<div class= "container">
+  <div class="row">
+    <div class="btn-group btn-toggle">
+
+    <button ng-class="{'btn-default': isFree, 'btn-primary active': !isFree && !isGrossing}" ng-click="setIsFree(false)">Paid</button>
+    <button ng-class="{'btn-default': !isFree, 'btn-primary active': isFree}" ng-click="setIsFree(true)">Free</button>
+    <button ng-class="{'btn-default': !isGrossing, 'btn-primary active': isGrossing}" ng-click="setIsGrossing(true)">Grossing</button>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="btn-group btn-toggle">
+     <button ng-class="!isNew ? 'btn-default' : 'btn-primary active'" ng-click="setIsNew(true)">New <!--{{isFree}}--></button>
+     <button ng-class="isNew ? 'btn-default' : 'btn-primary active'" ng-click="setIsNew(false)">Top  </button>
+    </div>
   </div>
 </div>
 
 
-<!-- Left sidebar games list -->
 
-<div class="row">
-  <div class="col-md-6">
-    <p style="color: blue" id="list" ng-repeat="game in treasure" ng-click="gameList(game)">
-    <img ng-src="{{game.icon}}" /> {{game.title}} </p>
-</div>
-<!-- Displays current selected game -->
+<div class="container panel">
+
+
+  <div class="row-fluid horizontal">
+      <div class="col-lg-12 col-md-12 ">
+          <div class="cover-container">
+              <!-- START PANEL -->
+              <div id="list" class="cover-item" ng-repeat="game in treasure" ng-click="gameList(game)">
+                <img ng-src="{{game.icon}}" /> <br />
+                <div id="title"> {{game.title}}  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
   <div class="col-md-5" id = "selectedGame">
     <h3 id = "selectedGameTitle" class="text-center">{{gameSelected.title}}</h3>
-      <a ng-href="{{gameSelected.url}}" target="_blank"><img id = "selectedGameIcon" ng-src="{{gameSelected.icon}}" class="img-responsive"/></a>
+      <a ng-href="#!/game"><img id = "selectedGameIcon" ng-src="{{gameSelected.icon}}" class="img-responsive"/></a>
     <p>
       {{gameSelected.description}}
     </p>
   </div>
-</div>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top panel" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <li class="sidebar-brand">
+        <a href="#"> Just Play </a>
+      </li>
+      <li ng-repeat="(categoryName, categoryNumber) in gameCategories" ng-click="setCategory(categoryNumber)" >
+        <a href="#">{{categoryName}}</a>
+      </li>
+  </nav>
+    <!-- <div class="row panel">
+      <div class="col-md-2">
+          <button ng-repeat="(categoryName, categoryNumber) in gameCategories" ng-class="{'btn' : true, 'btn-primary' : categoryNumber === categorySelected}"  ng-click="setCategory(categoryNumber)">{{categoryName}}</button>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+<!-- Left sidebar games list -->
+
+<!-- <div class="row">
+    <ul class="list-inline">
+      <li style="color: blue"  ng-repeat="game in treasure" ng-click="gameList(game)">
+        <img ng-src="{{game.icon}}" />
+        <br/>{{game.title}}
+      </li>
+    </ul>
+</div> -->
+
+
+<!-- Displays current selected game -->

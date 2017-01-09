@@ -22,20 +22,20 @@ var gameCategories = {
      WORD: 7019
 };
 
-function sum(a,b){
-  return a+b;
-}
-var x = sum(1,2);
+// function sum(a,b){
+//   return a+b;
+// }
+// var x = sum(1,2);
 
 var gameStates = {
     NEW_IOS: 'newapplications',
-    "isFreetrueNewtrue": 'newfreeapplications',
-    "isFreefalseNewtrue": 'newpaidapplications',
-    "isFreetrueNewfalse": 'topfreeapplications',
+    "isFreetrueNewtrueGrossingfalse": 'newfreeapplications',
+    "isFreefalseNewtrueGrossingfalse": 'newpaidapplications',
+    "isFreetrueNewfalseGrossingfalse": 'topfreeapplications',
     TOP_FREE_IPAD: 'topfreeipadapplications',
-    TOP_GROSSING_IOS: 'topgrossingapplications',
+    "isFreefalseNewfalseGrossingtrue": 'topgrossingapplications',
     TOP_GROSSING_IPAD: 'topgrossingipadapplications',
-    "isFreefalseNewfalse": 'toppaidapplications',
+    "isFreefalseNewfalseGrossingfalse": 'toppaidapplications',
     TOP_PAID_IPAD: 'toppaidipadapplications'
 };
 
@@ -45,8 +45,8 @@ function getAll (categoryNumber, gameStates){
   });
 }
 
-function setFilter (categoryNumber, costState, rankState){
-  return getAll(categoryNumber, gameStates["isFree" + costState.toString() + "New" + rankState.toString()]);
+function setFilter (categoryNumber, costState, rankState, isGrossing){
+  return getAll(categoryNumber, gameStates["isFree" + costState.toString() + "New" + rankState.toString() + "Grossing" + isGrossing.toString()]);
 };
 
   return{

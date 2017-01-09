@@ -19,7 +19,7 @@ app.use(express.static('node_modules'));
 
 // Get Methods
 app.get('/games/:category/:state', function(req, res){
-  request('https://itunes.apple.com/us/rss/'+ req.params.state + '/limit=15/genre='+ req.params.category +'/json', function (error, response, body) {
+  request('https://itunes.apple.com/us/rss/'+ req.params.state + '/limit=100/genre='+ req.params.category +'/json', function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var info = JSON.parse(body);
       var dataApi = cleanList(info);
