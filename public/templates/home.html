@@ -40,9 +40,12 @@
   <div class="col-md-5" id = "selectedGame">
     <h3 id = "selectedGameTitle" class="text-center">{{gameSelected.title}}</h3>
       <a ng-href="#!/game"><img id = "selectedGameIcon" ng-src="{{gameSelected.icon}}" class="img-responsive"/></a>
-    <p>
-      {{gameSelected.description}}
-    </p>
+    <div class="game_description">
+      <p>
+        {{gameSelected.description}}
+      </p>
+    </div>
+
   </div>
 
   <nav class="navbar navbar-inverse navbar-fixed-top panel" id="sidebar-wrapper" role="navigation">
@@ -50,15 +53,11 @@
       <li class="sidebar-brand">
         <a href="#"> Just Play </a>
       </li>
+
       <li ng-repeat="(categoryName, categoryNumber) in gameCategories" ng-click="setCategory(categoryNumber)" >
-        <a href="#">{{categoryName}}</a>
+          <a href="#">{{categoryName}}</a>
       </li>
   </nav>
-    <!-- <div class="row panel">
-      <div class="col-md-2">
-          <button ng-repeat="(categoryName, categoryNumber) in gameCategories" ng-class="{'btn' : true, 'btn-primary' : categoryNumber === categorySelected}"  ng-click="setCategory(categoryNumber)">{{categoryName}}</button>
-      </div>
-    </div>
 
   </div>
 
@@ -68,7 +67,11 @@
 
 
 
-
+  <!-- <div class="row panel">
+    <div class="col-md-2">
+        <button ng-repeat="(categoryName, categoryNumber) in gameCategories" ng-class="{'btn' : true, 'btn-primary' : categoryNumber === categorySelected}"  ng-click="setCategory(categoryNumber)">{{categoryName}}</button>
+    </div>
+  </div> -->
 
 <!-- Left sidebar games list -->
 

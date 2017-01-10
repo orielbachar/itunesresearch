@@ -45,6 +45,12 @@ function getAll (categoryNumber, gameStates){
   });
 }
 
+function gameInfo (gameId){
+  return $http.get('/game/' + gameId.id).then(function(data){
+    return data;
+  });
+}
+
 function setFilter (categoryNumber, costState, rankState, isGrossing){
   return getAll(categoryNumber, gameStates["isFree" + costState.toString() + "New" + rankState.toString() + "Grossing" + isGrossing.toString()]);
 };
@@ -54,7 +60,8 @@ function setFilter (categoryNumber, costState, rankState, isGrossing){
     treasure: treasure,
     gameCategories: gameCategories,
     setFilter: setFilter,
-    gameStates: gameStates
+    gameStates: gameStates,
+    gameInfo: gameInfo
   }
 
 });

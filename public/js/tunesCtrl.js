@@ -52,7 +52,9 @@ $scope.setInitialGame();
 $scope.gameCategories = tunesFactory.gameCategories;
 
 $scope.gameList = function(game){
-    $scope.gameSelected = game;
-    console.log(game);
+    tunesFactory.gameInfo(game).then(function(gameInfo){
+      $scope.gameSelected = gameInfo.data;
+      console.log(gameInfo);
+    })
   }
 });

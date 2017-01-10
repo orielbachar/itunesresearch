@@ -2,6 +2,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
+var store = require('app-store-scraper');
+
 
 //modules
 var cleanList = require('./modules/cleanList');
@@ -28,11 +30,19 @@ app.get('/games/:category/:state', function(req, res){
   });
 });
 
-//Functions
+app.get('/game/:id', function(req,res){
+  store.app({id: req.params.id}).then(function(body){
+    res.json(body);
+  })
+  .catch(console.log);
+});
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
+
+
+
 
 // store.list({
 //   collection: store.collection.NEW_FREE_IOS,
