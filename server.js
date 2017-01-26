@@ -7,6 +7,8 @@ var store = require('app-store-scraper');
 
 //modules
 var cleanList = require('./modules/cleanList');
+var goog = require('./routes/goog');
+
 
 
 //start express and mongoose
@@ -18,6 +20,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
+
+app.use('/goog', goog)
+
 
 // Get Methods
 app.get('/games/:category/:state', function(req, res){

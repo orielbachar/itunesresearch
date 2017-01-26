@@ -17,6 +17,7 @@ body{
   position: relative;
   margin-left: 35%;
   min-height: 700px;
+  color: white;
   }
 
 #selectedGameIcon{
@@ -52,6 +53,7 @@ body{
 
 .panel{
   position: absolute;
+  background-color: black;
 }
 
 /**{
@@ -61,6 +63,9 @@ body{
 .horizontal{
   margin-top: 40px;
   clear: both;
+  color: white;
+  text-align: center;
+  tex
 }
 
 .sidebar-nav {

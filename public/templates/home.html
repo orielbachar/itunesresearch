@@ -24,11 +24,10 @@
 
 <div class="container panel">
 
-
+<!-- Horizontal game scroller -->
   <div class="row-fluid horizontal">
       <div class="col-lg-12 col-md-12 ">
           <div class="cover-container">
-              <!-- START PANEL -->
               <div id="list" class="cover-item" ng-repeat="game in treasure" ng-click="gameList(game)">
                 <img ng-src="{{game.icon}}" /> <br />
                 <div id="title"> {{game.title}}  </div>
@@ -37,16 +36,36 @@
       </div>
   </div>
 
+
   <div class="col-md-5" id = "selectedGame">
     <h3 id = "selectedGameTitle" class="text-center">{{gameSelected.title}}</h3>
       <a ng-href="#!/game"><img id = "selectedGameIcon" ng-src="{{gameSelected.icon}}" class="img-responsive"/></a>
+
     <div class="game_description">
       <p>
         {{gameSelected.description}}
       </p>
+      <img ng-src="{{gameSelected.screenshots[0]}}" />
+
     </div>
 
+
+    <!-- <div ng-controller="carouselCtrl">
+    <div style="height: 305px">
+      <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+        <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+          <img ng-src="{{slide.image}}" style="margin:auto;">
+          <div class="carousel-caption">
+            <h4>Slide {{slide.id}}</h4>
+            <p>{{slide.text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
   </div>
+
 
   <nav class="navbar navbar-inverse navbar-fixed-top panel" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">

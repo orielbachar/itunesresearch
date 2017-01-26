@@ -54,7 +54,7 @@ $scope.gameCategories = tunesFactory.gameCategories;
 $scope.gameList = function(game){
     tunesFactory.gameInfo(game).then(function(gameInfo){
       $scope.gameSelected = gameInfo.data;
-      console.log(gameInfo);
+      console.log(gameInfo.data);
     })
   }
 });
