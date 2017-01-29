@@ -3,12 +3,13 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
 var store = require('app-store-scraper');
+var gplay = require('google-play-scraper');
+
 
 
 //modules
 var cleanList = require('./modules/cleanList');
 var goog = require('./routes/goog');
-
 
 
 //start express and mongoose
@@ -21,25 +22,50 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
 
-app.use('/goog', goog)
+app.use('/goog', goog);
 
 
 // Get Methods
-app.get('/games/:category/:state', function(req, res){
-  request('https://itunes.apple.com/us/rss/'+ req.params.state + '/limit=100/genre='+ req.params.category +'/json', function (error, response, body) {
+app.get('/games/:category/:state/:platform', function(req, res){
+  function getGames (platform){
+    if (platform == "true"){
+      request('https://itunes.apple.com/us/rss/'+ req.params.state + '/limit=100/genre='+ req.params.category +'/json', function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var info = JSON.parse(body);
       var dataApi = cleanList(info);
       res.send(dataApi)
-    }
-  });
-});
+         }
+      });
+    }else{ 
+      function goog (selectedCategory, selectedState){
+        gplay.list({
+          category: selectedCategory,
+          collection: selectedState,
+          num: 10,
+          fullDetail: true
+        })
+        .then(function(body){
+        res.json(body);
+        })
+      }
+      goog(req.params.category, req.params.state);
+    }  
+  }
+  getGames(req.params.platform);
+}); 
 
-app.get('/game/:id', function(req,res){
-  store.app({id: req.params.id}).then(function(body){
+app.get('/game/:id/:platform', function(req,res){
+  if (req.params.platform == 'true'){
+    store.app({id: req.params.id}).then(function(body){
     res.json(body);
   })
   .catch(console.log);
+}else{
+     gplay.app({appId: req.params.id})
+     .then(function(body){
+       res.json(body);
+     });
+  };
 });
 
 app.listen(process.env.PORT || 3000, function(){

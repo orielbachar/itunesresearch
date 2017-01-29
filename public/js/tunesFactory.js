@@ -1,7 +1,7 @@
 app.factory('tunesFactory', function($http){
 
 var treasure = {};
-var gameCategories = {
+var tunesCategories = {
      ACTION: 7001,
      ADVENTURE: 7002,
      ARCADE: 7003,
@@ -22,45 +22,78 @@ var gameCategories = {
      WORD: 7019
 };
 
-// function sum(a,b){
-//   return a+b;
-// }
-// var x = sum(1,2);
+var googCategories = {
+  GAME: 'GAME',
+  ACTION: 'GAME_ACTION',
+  ADVENTURE: 'GAME_ADVENTURE',
+  ARCADE: 'GAME_ARCADE',
+  BOARD: 'GAME_BOARD',
+  CARD: 'GAME_CARD',
+  CASINO: 'GAME_CASINO',
+  CASUAL: 'GAME_CASUAL',
+  EDUCATIONAL: 'GAME_EDUCATIONAL',
+  MUSIC: 'GAME_MUSIC',
+  PUZZLE: 'GAME_PUZZLE',
+  RACING: 'GAME_RACING',
+  ROLE_PLAYING: 'GAME_ROLE_PLAYING',
+  SIMULATION: 'GAME_SIMULATION',
+  SPORTS: 'GAME_SPORTS',
+  STRATEGY: 'GAME_STRATEGY',
+  TRIVIA: 'GAME_TRIVIA',
+  WORD: 'GAME_WORD',
+  FAMILY: 'FAMILY',
+  FAMILY2: 'FAMILY_ACTION',
+  BRAIN: 'FAMILY_BRAINGAMES'
+}
+
 
 var gameStates = {
-    NEW_IOS: 'newapplications',
-    "isFreetrueNewtrueGrossingfalse": 'newfreeapplications',
-    "isFreefalseNewtrueGrossingfalse": 'newpaidapplications',
-    "isFreetrueNewfalseGrossingfalse": 'topfreeapplications',
+    "ItunestrueisFreetrueNewtrueGrossingfalse": 'newfreeapplications',
+    "ItunestrueisFreefalseNewtrueGrossingfalse": 'newpaidapplications',
+    "ItunestrueisFreetrueNewfalseGrossingfalse": 'topfreeapplications',
+    "ItunestrueisFreefalseNewfalseGrossingtrue": 'topgrossingapplications',
+    "ItunestrueisFreefalseNewfalseGrossingfalse": 'toppaidapplications',
+    "ItunesfalseisFreetrueNewfalseGrossingfalse": 'topselling_free',
+    "ItunesfalseisFreefalseNewfalseGrossingfalse": 'topselling_paid',
+    "ItunesfalseisFreetrueNewtrueGrossingfalse": 'topselling_new_free',
+    "ItunesfalseisFreefalseNewtrueGrossingfalse": 'topselling_new_paid',
+    "ItunesfalseisFreefalseNewfalseGrossingtrue": 'topgrossing',
+    itunesTrueTRENDING: 'movers_shakers',
+    TOP_PAID_IPAD: 'toppaidipadapplications',
     TOP_FREE_IPAD: 'topfreeipadapplications',
-    "isFreefalseNewfalseGrossingtrue": 'topgrossingapplications',
     TOP_GROSSING_IPAD: 'topgrossingipadapplications',
-    "isFreefalseNewfalseGrossingfalse": 'toppaidapplications',
-    TOP_PAID_IPAD: 'toppaidipadapplications'
+    NEW_IOS: 'newapplications'
 };
 
-function getAll (categoryNumber, gameStates){
-  return $http.get('/games/' + categoryNumber + '/' + gameStates).then(function(data){
+function getAll (categoryKey, gameStates, isItunes){
+  return $http.get('/games/' + categoryKey + '/' + gameStates + '/' + isItunes).then(function(data){
     treasure.games = data;
   });
 }
 
-function gameInfo (gameId){
+function gameInfo (gameId, isItunes){
+  return $http.get('/game/' + gameId + '/' + isItunes).then(function(data){
+    return data;
+  });
+}
+
+function googGame (gameId){
   return $http.get('/game/' + gameId.id).then(function(data){
     return data;
   });
 }
 
-function setFilter (categoryNumber, costState, rankState, isGrossing){
-  return getAll(categoryNumber, gameStates["isFree" + costState.toString() + "New" + rankState.toString() + "Grossing" + isGrossing.toString()]);
+function setFilter (categoryKey, costState, rankState, isGrossing, isItunes){
+  return getAll(categoryKey, gameStates["Itunes" + isItunes.toString() + "isFree" + costState.toString() + "New" + rankState.toString() + "Grossing" + isGrossing.toString()], isItunes);
 };
 
   return{
     getAll: getAll,
     treasure: treasure,
-    gameCategories: gameCategories,
+    tunesCategories: tunesCategories,
     setFilter: setFilter,
     gameStates: gameStates,
+    googCategories: googCategories,
     gameInfo: gameInfo
   }
 

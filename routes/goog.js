@@ -3,12 +3,12 @@ var router = express.Router();
 
 var gplay = require('google-play-scraper');
 
-router.get('/:category:state', function(req,res,next){
+router.get('/', function(req,res,next){
   gplay.list({
       category: gplay.category.GAME_ADVENTURE,
       collection: gplay.collection.TOP_FREE,
       num: 10
-    })
+        })
     .then(function(body){
       res.json(body);
     })
