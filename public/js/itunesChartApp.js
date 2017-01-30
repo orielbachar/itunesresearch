@@ -1,4 +1,4 @@
-var app = angular.module('itunesChartApp',  ['ui.router', 'ui.bootstrap']);
+var app = angular.module('itunesChartApp',  ['ui.router']);
 app.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
 }]);
